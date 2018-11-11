@@ -1,3 +1,24 @@
+
+
+---To Get url to redirect Google ,, put it in url
+http://localhost:55307/api/Account/ExternalLogins?returnUrl=%2F&generateState=true
+
+This will Return this , what we have to use
+/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A55307%2F&state=fOsOOSErnp9dFyhOPKlMipSZRMAXTvveqDIczBUbqMA1
+
+
+---Here is your client ID
+960028872055-c9oe2ova4j9mdsdikel0udel8n94bkog.apps.googleusercontent.com
+
+Here is your client secret
+xoU1AR6NZ3hhvP19KPhI1S1B
+
+--Service Name
+ANGEmployeeService
+
+
+***********************************************************************************
+
 -- Get Token (Fiddler) 
 Post Method  --http://localhost:55307/token
 username=a@a.com&password=Abc@123&grant_type=password

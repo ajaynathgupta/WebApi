@@ -11,10 +11,10 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <td colspan="2">
+                    <th class="success" colspan="2">
                         Existing User Login
-                        <a class="btn btn-success pull-right" href="Register.html">Register</a> 
-                    </td>
+                        <a class="btn btn-success pull-right" href="Register.html">Register</a>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +31,24 @@
                 </tr>
             </tbody>
         </table>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="success">
+                        Social Login
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="button" id="btnGoogleLogin" value="Login with Google"
+                               class="btn btn-success" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <div id="divError" class="alert alert-danger collapse">
             <a id="linkClose" class="close" href="#">&times;</a>
             <div id="divErrorText"></div>
@@ -39,9 +57,15 @@
 
 
     <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/LoginWith.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            getAccessToken();
+            $('#btnGoogleLogin').click(function () {
+                window.location.href = "/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A55307%2FLogin.html&state=fOsOOSErnp9dFyhOPKlMipSZRMAXTvveqDIczBUbqMA1";
+            })
+
             $('#linkClose').click(function () {
                 $('#divError').hide("fade");
             });
@@ -51,11 +75,11 @@
                 $.ajax({
                     url: '/token',
                     method: 'POST',
-                    contentType:'application/json',
+                    contentType: 'application/json',
                     data: {
                         username: $('#txtUsername').val(),
                         password: $('#txtPassword').val(),
-                        grant_type:'password'
+                        grant_type: 'password'
                     },
                     success: function (response) {
                         debugger;
