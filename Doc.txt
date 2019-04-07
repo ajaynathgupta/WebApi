@@ -1,5 +1,9 @@
+Login with Facebook
+App ID - 322063095286295
+App Secret - 48170f69cccd4207ace7810f634b7e67
 
-
+*****************************
+Login With Google 
 ---To Get url to redirect Google ,, put it in url
 http://localhost:55307/api/Account/ExternalLogins?returnUrl=%2F&generateState=true
 

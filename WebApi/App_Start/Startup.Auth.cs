@@ -10,6 +10,9 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using WebApi.Providers;
 using WebApi.Models;
+using Microsoft.Owin.Security.Facebook;
+using WebApi.Facebook;
+
 
 namespace WebApi
 {
@@ -47,18 +50,28 @@ namespace WebApi
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(OAuthOptions);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+			// Uncomment the following lines to enable logging in with third party login providers
+			//app.UseMicrosoftAccountAuthentication(
+			//    clientId: "",
+			//    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
+			//app.UseTwitterAuthentication(
+			//    consumerKey: "",
+			//    consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+			//app.UseFacebookAuthentication(
+			//    appId: "",
+			//    appSecret: "");
+
+			var facebookOptions = new FacebookAuthenticationOptions()
+			{
+				AppId = "322063095286295",
+				AppSecret = "48170f69cccd4207ace7810f634b7e67",
+				BackchannelHttpHandler = new FbBackChannelHandler(),
+				UserInformationEndpoint = "https://graph.facebook.com/v3.2/me?fields=id,email"
+			};
+			facebookOptions.Scope.Add("email");
+			app.UseFacebookAuthentication(facebookOptions);
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

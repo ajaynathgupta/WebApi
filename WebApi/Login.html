@@ -20,11 +20,11 @@
             <tbody>
                 <tr>
                     <td>Username</td>
-                    <td><input type="text" id="txtUsername" /> </td>
+                    <td><input type="text" id="txtUsername"  required/> </td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="text" id="txtPassword" /> </td>
+                    <td><input type="text" id="txtPassword" required/> </td>
                 </tr>
                 <tr class="success">
                     <td colspan="2"><input id="btnLogin" type="button" value="Login" class="btn btn-success" /> </td>
@@ -40,14 +40,20 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <input type="button" id="btnGoogleLogin" value="Login with Google"
-                               class="btn btn-success" />
-                    </td>
-                </tr>
-            </tbody>
+			<tbody>
+				<tr>
+					<td>
+						<input type="button" id="btnGoogleLogin" value="Login with Google"
+							   class="btn btn-success" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" id="btnFacebookLogin" value="Login with Facebook"
+							   class="btn btn-success" />
+					</td>
+				</tr>
+			</tbody>
         </table>
         <div id="divError" class="alert alert-danger collapse">
             <a id="linkClose" class="close" href="#">&times;</a>
@@ -64,14 +70,18 @@
             getAccessToken();
             $('#btnGoogleLogin').click(function () {
                 window.location.href = "/api/Account/ExternalLogin?provider=Google&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A55307%2FLogin.html&state=fOsOOSErnp9dFyhOPKlMipSZRMAXTvveqDIczBUbqMA1";
-            })
+			})
+
+			$('#btnFacebookLogin').click(function () {
+				window.location.href = "/api/Account/ExternalLogin?provider=Facebook&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A55307%2FLogin.html&state=fOsOOSErnp9dFyhOPKlMipSZRMAXTvveqDIczBUbqMA1";
+			})
 
             $('#linkClose').click(function () {
                 $('#divError').hide("fade");
             });
 
             $('#btnLogin').click(function () {
-
+				
                 $.ajax({
                     url: '/token',
                     method: 'POST',
